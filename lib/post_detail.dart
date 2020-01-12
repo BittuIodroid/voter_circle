@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 //import 'package:demo_app/post.dart';
 //import 'package:voter_circle_final/post.dart';
 //import 'package:voter_circle_final/post.dart';
@@ -24,27 +25,24 @@ class PostDetail extends StatelessWidget {
             // Stretch the cards in horizontal axis
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              new Column(
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    new Text(
-                      // Read the name field value and set it in the Text widget
-                      post.name,
-                      // set some style to text
-                      style: new TextStyle(
+                    new Text(post.name,
+                      style: TextStyle(
                           fontSize: 25.0, color: Colors.lightBlueAccent),
                     ),
                   ]),
-              new Column(crossAxisAlignment: CrossAxisAlignment.end, children: <
+              Column(crossAxisAlignment: CrossAxisAlignment.end, children: <
                   Widget>[
-                new Text(
+                Text(
                   // Read the name field value and set it in the Text widget
                   post.date,
                   // set some style to text
                   style: new TextStyle(
                       fontSize: 14.0, color: Colors.lightBlueAccent),
                 ),
-                new Text(
+                Text(
                   // Read the name field value and set it in the Text widget
                   "Post:- " + post.about,
                   // set some style to text
