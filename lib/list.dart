@@ -9,13 +9,13 @@ import 'post_detail.dart';
 //import 'package:demo_app/post_detail.dart';
 
 class PostList extends StatelessWidget {
-  final List<Post> post;
-  PostList({Key key, this.post}) : super(key: key);
+  final List<Post> posts;
+  PostList({Key key, this.posts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
-        itemCount: post == null ? 0 : post.length,
+        itemCount: posts == null ? 0 : posts.length,
         itemBuilder: (BuildContext context, int index) {
           return new GestureDetector(
               child: new Container(
@@ -29,7 +29,7 @@ class PostList extends StatelessWidget {
                         children: <Widget>[
                           new Text(
                             // Read the name field value and set it in the Text widget
-                            post[index].name,
+                            posts[index].name,
                             // set some style to text
                             style: new TextStyle(
                                 fontSize: 25.0, color: Colors.lightBlueAccent),
@@ -40,14 +40,14 @@ class PostList extends StatelessWidget {
                         children: <Widget>[
                           new Text(
                             // Read the name field value and set it in the Text widget
-                            post[index].date,
+                            posts[index].date,
                             // set some style to text
                             style: new TextStyle(
                                 fontSize: 14.0, color: Colors.lightBlueAccent),
                           ),
                           new Text(
                             // Read the name field value and set it in the Text widget
-                            "Post:- " + post[index].about,
+                            "Post:- " + posts[index].about,
                             // set some style to text
                             style: new TextStyle(
                                 fontSize: 20.0, color: Colors.black),
@@ -62,7 +62,7 @@ class PostList extends StatelessWidget {
                                 size: 30.0,
                               ),
                               Text(
-                                ' ' + post[index].commentCount.toString() + '    ',
+                                ' ' + posts[index].comments.length.toString() + '    ',
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.black),
@@ -73,7 +73,7 @@ class PostList extends StatelessWidget {
                                 size: 30.0,
                               ),
                               Text(
-                                ' ' + post[index].likes.toString() + '    ',
+                                ' ' + posts[index].likes.toString() + '    ',
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.black),
@@ -84,7 +84,7 @@ class PostList extends StatelessWidget {
                                 size: 30.0,
                               ),
                               Text(
-                                ' ' + post[index].dislikes.toString(),
+                                ' ' + posts[index].dislikes.toString(),
                                 // set some style to text
                                 style: new TextStyle(
                                     fontSize: 20.0, color: Colors.black),
@@ -103,10 +103,10 @@ class PostList extends StatelessWidget {
               onTap: () => {
                     // Scaffold.of(context).showSnackBar(
                     //     SnackBar(content: Text(post[index].about)))
-
+                    print(posts[index].comments[0].name),
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PostDetail(post:post[index])),
+                      MaterialPageRoute(builder: (context) => PostDetail(post:posts[index])),
                     )
                   });
         });

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'post.dart';
 
+// ignore: must_be_immutable
 class PostDetail extends StatelessWidget {
   Post post;
 
@@ -59,7 +60,7 @@ class PostDetail extends StatelessWidget {
                       size: 30.0,
                     ),
                     Text(
-                      ' ' + post.commentCount.toString() + '    ',
+                      ' ' + post.comments.length.toString() + '    ',
                       // set some style to text
                       style: new TextStyle(fontSize: 20.0, color: Colors.black),
                     ),
@@ -121,12 +122,12 @@ class PostDetail extends StatelessWidget {
       list.add(new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Text(comm['name'].toString(),
+            new Text(comm.name.toString(),
                 style: new TextStyle(
                   fontSize: 15.0,
                   color: Colors.blue,
                 )),
-            new Text(comm['comment'].toString(),
+            new Text(comm.comment.toString(),
                 style: new TextStyle(
                   fontSize: 15.0,
                   color: Colors.black,
@@ -146,7 +147,7 @@ class PostDetail extends StatelessWidget {
                   size: 15.0,
                 ),
                 Text(
-                  ' ' + comm['likes'].toString() + '    ',
+                  ' ' + comm.likes.toString() + '    ',
                   // set some style to text
                   style: new TextStyle(fontSize: 15.0, color: Colors.black),
                 ),
@@ -156,7 +157,7 @@ class PostDetail extends StatelessWidget {
                   size: 15.0,
                 ),
                 Text(
-                  ' ' + comm['dislikes'].toString(),
+                  ' ' + comm.dislikes.toString(),
                   // set some style to text
                   style: new TextStyle(fontSize: 15.0, color: Colors.black),
                 ),
@@ -166,7 +167,7 @@ class PostDetail extends StatelessWidget {
             new Container(
               child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: this.getReplys(comm['replys'])),
+                  children: this.getReplys(comm.replys)),
               padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
             ),
             new Divider(),
@@ -175,18 +176,18 @@ class PostDetail extends StatelessWidget {
     return list;
   }
 
-  List<Widget> getReplys(List replys) {
+  List<Widget> getReplys(List<Reply> replys) {
     List<Widget> list = [];
     for (var rep in replys) {
       list.add(new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Text(rep['name'].toString(),
+            new Text(rep.name.toString(),
                 style: new TextStyle(
                   fontSize: 15.0,
                   color: Colors.blue,
                 )),
-            new Text(rep['reply'].toString(),
+            new Text(rep.reply.toString(),
                 style: new TextStyle(
                   fontSize: 15.0,
                   color: Colors.black,
@@ -200,7 +201,7 @@ class PostDetail extends StatelessWidget {
                 size: 15.0,
               ),
               Text(
-                ' ' + rep['likes'].toString() + '    ',
+                ' ' + rep.likes.toString() + '    ',
                 // set some style to text
                 style: new TextStyle(fontSize: 15.0, color: Colors.black),
               ),
@@ -210,7 +211,7 @@ class PostDetail extends StatelessWidget {
                 size: 15.0,
               ),
               Text(
-                ' ' + rep['dislikes'].toString(),
+                ' ' + rep.dislikes.toString(),
                 // set some style to text
                 style: new TextStyle(fontSize: 15.0, color: Colors.black),
               ),
