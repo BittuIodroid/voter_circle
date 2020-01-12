@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-//import 'package:demo_app/post.dart';
-//import 'package:voter_circle_final/post.dart';
-//import 'package:voter_circle_final/post.dart';
+//import 'package:demo_app/post_model.dart';
+//import 'package:voter_circle_final/post_model.dart';
+//import 'package:voter_circle_final/post_model.dart';
 
-import 'post.dart';
+import 'post_model.dart';
+import 'widget/list_of_posts.dart';
+import 'widget/profile_image.dart';
 
 // ignore: must_be_immutable
 class PostDetail extends StatelessWidget {
   Post post;
-
   PostDetail({Key key, @required this.post}) : super(key: key);
 
   @override
@@ -18,75 +19,25 @@ class PostDetail extends StatelessWidget {
       appBar: AppBar(
         title: Text('Post Detail'),
       ),
-      body: new ListView(
+      body: ListView(
         children: <Widget>[
-          new Center(
-              child: new Column(
-            // Stretch the cards in horizontal axis
+           Center(
+              child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  postListCard(post, context),
+                  Positioned(
+                      top:0,
+                      left:10,
+                      child: postProfileImage(post.image))
+                ],
+              ),
+
+
+              //Comments Data
               Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    new Text(post.name,
-                      style: TextStyle(
-                          fontSize: 25.0, color: Colors.lightBlueAccent),
-                    ),
-                  ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.end, children: <
-                  Widget>[
-                Text(
-                  // Read the name field value and set it in the Text widget
-                  post.date,
-                  // set some style to text
-                  style: new TextStyle(
-                      fontSize: 14.0, color: Colors.lightBlueAccent),
-                ),
-                Text(
-                  // Read the name field value and set it in the Text widget
-                  "Post:- " + post.about,
-                  // set some style to text
-                  style: new TextStyle(fontSize: 20.0, color: Colors.black),
-                ),
-                new Divider(),
-                new Center(
-                    child: new Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.add_comment,
-                      color: Colors.blue,
-                      size: 30.0,
-                    ),
-                    Text(
-                      ' ' + post.comments.length.toString() + '    ',
-                      // set some style to text
-                      style: new TextStyle(fontSize: 20.0, color: Colors.black),
-                    ),
-                    Icon(
-                      Icons.thumb_up,
-                      color: Colors.green,
-                      size: 30.0,
-                    ),
-                    Text(
-                      ' ' + post.likes.toString() + '    ',
-                      // set some style to text
-                      style: new TextStyle(fontSize: 20.0, color: Colors.black),
-                    ),
-                    Icon(
-                      Icons.thumb_down,
-                      color: Colors.red,
-                      size: 30.0,
-                    ),
-                    Text(
-                      ' ' + post.dislikes.toString(),
-                      // set some style to text
-                      style: new TextStyle(fontSize: 20.0, color: Colors.black),
-                    ),
-                  ],
-                )),
-                new Divider(),
-              ]),
-              new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     new Text(
@@ -100,6 +51,8 @@ class PostDetail extends StatelessWidget {
                       thickness: 4,
                     ),
                   ]),
+
+
               new Container(
                 child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,22 +68,34 @@ class PostDetail extends StatelessWidget {
   }
 
   List<Widget> getComments() {
-    List<Widget> list = [];
+    List<Widget> commentList = [];
     for (var comm in post.comments) {
-      list.add(new Column(
+      commentList.add(new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Text(comm.name.toString(),
-                style: new TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.blue,
-                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                commentProfileImage(comm.image),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 180, 0),
+                  child: Text(comm.name.toString(),
+                      style: new TextStyle(fontSize: 15.0, color: Colors.blue,)),
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(40, 0, 0, 0),
+              child: Text(comm.date.toString(),
+                      style: TextStyle(fontSize: 15.0, color: Colors.blue,),),
+            ),
+
+
             new Text(comm.comment.toString(),
                 style: new TextStyle(
                   fontSize: 15.0,
                   color: Colors.black,
                 )),
-            new Divider(),
             new Center(
                 child: new Row(
               children: <Widget>[
@@ -161,36 +126,45 @@ class PostDetail extends StatelessWidget {
                 ),
               ],
             )),
-            new Divider(),
             new Container(
               child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: this.getReplys(comm.replys)),
+                  children: this.getReplies(comm.replys)),
               padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
             ),
-            new Divider(),
           ]));
     }
-    return list;
+    return commentList;
   }
 
-  List<Widget> getReplys(List<Reply> replys) {
+  List<Widget> getReplies(List<Reply> replies) {
     List<Widget> list = [];
-    for (var rep in replys) {
+    for (var reply in replies) {
       list.add(new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Text(rep.name.toString(),
-                style: new TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.blue,
-                )),
-            new Text(rep.reply.toString(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+
+                //Reply Profile Image
+                commentProfileImage(reply.image),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 150, 0),
+                  child: new Text(reply.name.toString(),
+                      style: new TextStyle(fontSize: 15.0, color: Colors.blue)),
+                ),
+              ],
+            ),
+             Container(
+               margin: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                 child: Text(reply.date,
+                     style: new TextStyle(fontSize: 15.0, color: Colors.blue))),
+             Text(reply.reply.toString(),
                 style: new TextStyle(
                   fontSize: 15.0,
                   color: Colors.black,
                 )),
-            new Divider(),
             new Center(
                 child: new Row(children: <Widget>[
               Icon(
@@ -199,7 +173,7 @@ class PostDetail extends StatelessWidget {
                 size: 15.0,
               ),
               Text(
-                ' ' + rep.likes.toString() + '    ',
+                ' ' + reply.likes.toString() + '    ',
                 // set some style to text
                 style: new TextStyle(fontSize: 15.0, color: Colors.black),
               ),
@@ -209,10 +183,11 @@ class PostDetail extends StatelessWidget {
                 size: 15.0,
               ),
               Text(
-                ' ' + rep.dislikes.toString(),
+                ' ' + reply.dislikes.toString(),
                 // set some style to text
                 style: new TextStyle(fontSize: 15.0, color: Colors.black),
               ),
+
             ]))
           ]));
     }

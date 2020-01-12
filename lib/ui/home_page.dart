@@ -1,13 +1,14 @@
+import 'dart:io';
+
 import 'package:demo_app/network/api_call.dart';
 import 'package:flutter/material.dart';
 
 import '../displaying_post_details.dart';
-import '../post.dart';
+import '../post_model.dart';
 
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -21,7 +22,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    postObject = Network().getPostData();
+      postObject = Network().getPostData();
+
+
   }
 
   @override
@@ -34,21 +37,20 @@ class _MyHomePageState extends State<MyHomePage> {
         child: FutureBuilder(
             future: postObject,
             builder: (BuildContext context, AsyncSnapshot<PostModel> snapshot) {
-              List<Post> posts = snapshot.data.posts;
+
               // List<Post> posts =  parseJson(snapshot.data.toString());
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
-                  return Text('Press button to start.');
                 case ConnectionState.active:
                 case ConnectionState.waiting:
-                  return Text('Awaiting result...');
+                  return CircularProgressIndicator();
                 case ConnectionState.done:
                   if (snapshot.hasError)
                     return Text('Error: ${snapshot.error}');
-                  return PostList(
-                      posts: posts); // Returning Post Data if no error is found
+                  List<Post> posts = snapshot.data.posts;
+                  return PostList(posts: posts); // Returning Post Data if no error is found
               }
-              return null;
+              return CircularProgressIndicator();
             }),
       ),
     );
