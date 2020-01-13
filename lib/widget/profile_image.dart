@@ -8,7 +8,7 @@ Widget postProfileImage(String profileUrl) {
     decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-            image: NetworkImage(profileUrl ?? "http://placehold.it/32x32"), fit: BoxFit.cover)),
+            image: NetworkImage(profileUrl ?? "images/face.png"), fit: BoxFit.cover)),
   );
 }
 
@@ -21,6 +21,6 @@ Widget commentProfileImage(String profileUrl) {
     decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-            image: NetworkImage(profileUrl ?? "http://placehold.it/32x32"), fit: BoxFit.cover)),
+            image: NetworkImage(profileUrl ?? "images/face.png"), fit: BoxFit.cover)),
   );
 }

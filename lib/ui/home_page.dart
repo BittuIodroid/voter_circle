@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:demo_app/network/api_call.dart';
 import 'package:flutter/material.dart';
-
 import '../displaying_post_details.dart';
 import '../post_model.dart';
 
@@ -24,7 +21,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
       postObject = Network().getPostData();
 
-
   }
 
   @override
@@ -38,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
             future: postObject,
             builder: (BuildContext context, AsyncSnapshot<PostModel> snapshot) {
 
-              // List<Post> posts =  parseJson(snapshot.data.toString());
+              //Handling Error
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
                 case ConnectionState.active:

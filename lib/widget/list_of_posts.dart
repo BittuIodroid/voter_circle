@@ -10,13 +10,13 @@ Widget postListCard(Post posts, BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            new Column(mainAxisAlignment: MainAxisAlignment.center,
-//                    crossAxisAlignment: CrossAxisAlignment.end,
+            new Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Column(
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.fromLTRB(30, 0, 80, 0),
+                        margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
                         child: Text(
                           posts.name,
                           style: new TextStyle(
@@ -24,7 +24,7 @@ Widget postListCard(Post posts, BuildContext context) {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 80, 0),
+                        margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
                         child: Text(
                           posts.date,
                           style: new TextStyle(
@@ -40,9 +40,7 @@ Widget postListCard(Post posts, BuildContext context) {
                   Column(crossAxisAlignment: CrossAxisAlignment.end, children: <
                       Widget>[
                 Text(
-                  // Read the name field value and set it in the Text widget
                   "Post:- " + posts.about,
-                  // set some style to text
                   style: new TextStyle(fontSize: 20.0, color: Colors.black),
                 ),
                 Center(
@@ -55,7 +53,6 @@ Widget postListCard(Post posts, BuildContext context) {
                     ),
                     Text(
                       ' ' + posts.comments.length.toString() + '    ',
-                      // set some style to text
                       style: new TextStyle(fontSize: 20.0, color: Colors.black),
                     ),
                     Icon(
@@ -65,7 +62,6 @@ Widget postListCard(Post posts, BuildContext context) {
                     ),
                     Text(
                       ' ' + posts.likes.toString() + '    ',
-                      // set some style to text
                       style: new TextStyle(fontSize: 20.0, color: Colors.black),
                     ),
                     Icon(
@@ -75,7 +71,6 @@ Widget postListCard(Post posts, BuildContext context) {
                     ),
                     Text(
                       ' ' + posts.dislikes.toString(),
-                      // set some style to text
                       style: new TextStyle(fontSize: 20.0, color: Colors.black),
                     ),
                   ],
@@ -92,7 +87,8 @@ Widget postListCard(Post posts, BuildContext context) {
       ),
       onTap: () => {
             Navigator.push(
-              context, MaterialPageRoute(builder: (context) => PostDetail(post: posts)),
+              context,
+              MaterialPageRoute(builder: (context) => PostDetail(post: posts)),
             )
           });
 }

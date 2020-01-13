@@ -4,9 +4,9 @@ import 'post_model.dart';
 import 'widget/list_of_posts.dart';
 import 'widget/profile_image.dart';
 
-
 class PostList extends StatelessWidget {
   final List<Post> posts;
+
   PostList({Key key, this.posts}) : super(key: key);
 
   @override
@@ -18,13 +18,9 @@ class PostList extends StatelessWidget {
             children: <Widget>[
               postListCard(posts[postIndex], context),
               Positioned(
-                top:0,
-                left:10,
-                  child: postProfileImage(posts[postIndex].image))
+                  left: 10, child: postProfileImage(posts[postIndex].image))
             ],
           );
-
         });
   }
 }
-
