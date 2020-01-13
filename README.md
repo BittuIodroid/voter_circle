@@ -1,16 +1,22 @@
 # voter_circle_final
 
-A new Flutter project.
+Flutter project.
 
 ## Getting Started
+In this app I have used JSON to display the data's.
+I have created Json and converted it to API from "myjson.com"
+Handled all the Api Exceptions.
+To display profile image i have used URL from lorecpicsum
+The UI for the App may vary depending on mobile.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## How to use
+Install the app from the .apk file
+Then open the App.
+The first page will display all the POSTS with detailed data.
+To see Comments and Replies of any Post just Tap the Post it will take you to next screen.
+The Next screen contains the Tapped Post and all the comments and replies of that particular post.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Note : UI may vary depending on the mobile.
