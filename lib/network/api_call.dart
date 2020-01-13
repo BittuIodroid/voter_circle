@@ -5,7 +5,7 @@ import '../post_model.dart';
 
 class Network{
   Future<PostModel> getPostData() async{
-    var finalUrl ="https://api.myjson.com/bins/quni2";
+    var finalUrl ="https://api.myjson.com/bins/12s0ai";
     final response = await get(Uri.encodeFull(finalUrl));
 
     if(response.statusCode == 200){
